@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pengingat - YouRemind</title>
+  <link rel="icon" type="image/png" href="img/logo_youremind.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/sulton_style.css">
+  <script>
+    (function() {
+      try {
+        var savedTheme = localStorage.getItem('sulton_theme_v1');
+        if (savedTheme === 'dark' || savedTheme === 'light') {
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body data-page="pengingat.html">
+  <!-- Tirai Animasi Slide Kanan-Kiri Saat Ubah Tema -->
+  <div id="sulton_theme_curtain" aria-hidden="true"></div>
+
+  <header id="sulton_header">
+    <div class="sulton_container sulton_navbar">
+      <a href="index.html" class="sulton_brand" aria-label="Beranda YouRemind">
+        <span class="sulton_brand_badge">
+          <img src="img/logo_youremind.png" alt="Logo YouRemind" class="sulton_brand_logo" onerror="if(!this.dataset.f){this.dataset.f='1';this.src='img/logo_youremind.webp';}else if(this.dataset.f==='1'){this.dataset.f='2';this.src='img/logo_youremind.jpg';}">
+        </span>
+        <span class="sulton_brand_wordmark">YouRemind</span>
+      </a>
+
+      <nav aria-label="Navigasi Utama">
+        <ul class="sulton_menu">
+          <li><a href="index.html" class="sulton_menu_link">Beranda</a></li>
+          <li><a href="jadwal.html" class="sulton_menu_link">Jadwal Kuliah</a></li>
+          <li><a href="tambah-tugas.html" class="sulton_menu_link">Tambah Tugas</a></li>
+          <li><a href="daftar-tugas.html" class="sulton_menu_link">Daftar Tugas</a></li>
+          <li>
+            <a href="pengingat.html" class="sulton_menu_link sulton_active">
+              <span>Pengingat</span>
+              <span id="sulton_nav_badge" class="sulton_nav_badge" style="display:none;">0</span>
+            </a>
+          </li>
+          <li><a href="tentang.html" class="sulton_menu_link">Tentang</a></li>
+          <li><a href="kontak.html" class="sulton_menu_link">Kontak</a></li>
+        </ul>
+      </nav>
+
+      <div class="sulton_nav_controls">
+        <button type="button" id="sulton_theme_toggle" class="sulton_theme_switch" role="switch" aria-checked="false" aria-label="Ganti ke Mode Gelap" title="Ganti Tema Terang / Gelap">
+          <span class="sulton_switch_icon sulton_switch_sun" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <span class="sulton_switch_icon sulton_switch_moon" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+          <span class="sulton_switch_thumb" aria-hidden="true"></span>
+        </button>
+
+        <button type="button" id="sulton_mobile_menu_btn" class="sulton_hamburger_btn" aria-expanded="false" aria-controls="sulton_mobile_drawer" aria-label="Buka Menu Tentang dan Kontak" title="Menu Tentang &amp; Kontak">
+          <svg class="sulton_icon_hamburger" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+          <svg class="sulton_icon_close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="sulton_mobile_drawer" class="sulton_mobile_drawer" aria-label="Menu Tambahan Mobile">
+      <div class="sulton_container sulton_mobile_drawer_inner">
+        <a href="tentang.html" class="sulton_mobile_drawer_link">
+          <span class="sulton_mobile_drawer_icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+          </span>
+          <span>
+            <strong>Tentang</strong>
+            <small>Dokumentasi, fitur &amp; panduan aplikasi</small>
+          </span>
+        </a>
+        <a href="kontak.html" class="sulton_mobile_drawer_link">
+          <span class="sulton_mobile_drawer_icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </span>
+          <span>
+            <strong>Kontak</strong>
+            <small>Profil pengembang &amp; pertanyaan umum</small>
+          </span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="sulton_main">
+    <section class="sulton_page_header">
+      <div class="sulton_container">
+        <span class="sulton_hero_kicker"><span class="sulton_pulse_dot"></span> Notifikasi &amp; Ambang Peringatan</span>
+        <h1 class="sulton_page_title">Pengaturan Pengingat</h1>
+        <p class="sulton_page_desc">Atur batas waktu peringatan dini (H-6 Jam hingga H-7 Hari) dan uji nada notifikasi browser.</p>
+      </div>
+    </section>
+
+    <section class="sulton_section">
+      <div class="sulton_container sulton_grid_2">
+        <!-- KONFIGURASI AMBANG BATAS -->
+        <div class="sulton_card">
+          <div class="sulton_card_header">
+            <h2 class="sulton_card_title">Preferensi Peringatan Dini</h2>
+            <span class="sulton_badge sulton_badge_sky">Otomatis</span>
+          </div>
+          <div class="sulton_card_body">
+            <div class="sulton_illust_showcase_box">
+              <svg width="68" height="68" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="40" cy="40" r="34" fill="#e0f2fe"/>
+                <path d="M54 34C54 26.268 47.732 20 40 20C32.268 20 26 26.268 26 34C26 48 20 51 20 51H60C60 51 54 48 54 34Z" fill="#0284c7"/>
+                <path d="M35.5 55C36.6 56.8 38.2 58 40 58C41.8 58 43.4 56.8 44.5 55" stroke="#0284c7" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="56" cy="24" r="9" fill="#f59e0b" stroke="#ffffff" stroke-width="2.2"/>
+                <text x="56" y="28" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="sans-serif">!</text>
+              </svg>
+              <div>
+                <div class="sulton_list_title">Peringatan Otomatis Sebelum Deadline</div>
+                <div class="sulton_list_meta">
+                  Tugas yang sisa waktunya kurang dari ambang batas akan ditandai <strong>Mendesak</strong> di seluruh halaman.
+                </div>
+              </div>
+            </div>
+
+            <form id="sulton_form_pengingat">
+              <div class="sulton_form_group">
+                <label class="sulton_label" for="sulton_p_ambang">Ambang Batas Peringatan *</label>
+                <select id="sulton_p_ambang" class="sulton_select">
+                  <option value="6">H-6 Jam sebelum deadline</option>
+                  <option value="12">H-12 Jam sebelum deadline</option>
+                  <option value="24" selected>H-24 Jam (1 Hari) sebelum deadline</option>
+                  <option value="48">H-48 Jam (2 Hari) sebelum deadline</option>
+                  <option value="72">H-72 Jam (3 Hari) sebelum deadline</option>
+                  <option value="168">H-7 Hari (1 Minggu) sebelum deadline</option>
+                </select>
+              </div>
+
+              <div class="sulton_form_group">
+                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-weight: 600; color: var(--sulton-ink);">
+                  <input type="checkbox" id="sulton_p_suara" checked style="width: 18px; height: 18px; accent-color: var(--sulton-sky);">
+                  <span>Aktifkan nada pengingat (Web Audio Chime) saat simulasi</span>
+                </label>
+              </div>
+
+              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button type="submit" class="sulton_btn sulton_btn_primary">Simpan Pengaturan</button>
+                <button type="button" id="sulton_btn_test_chime" class="sulton_btn sulton_btn_secondary">Uji Nada Pengingat</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- PANEL PERINGATAN AKTIF -->
+        <div class="sulton_card">
+          <div class="sulton_card_header">
+            <h2 class="sulton_card_title">Peringatan Aktif Saat Ini</h2>
+            <span id="sulton_urgent_count_badge" class="sulton_badge sulton_badge_warning">0 Mendesak</span>
+          </div>
+          <div id="sulton_urgent_container" class="sulton_card_body"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOG STATUS SEMUA TUGAS -->
+    <section class="sulton_section sulton_section_alt">
+      <div class="sulton_container">
+        <div class="sulton_section_head_split">
+          <div>
+            <span class="sulton_section_eyebrow">MONITORING WAKTU</span>
+            <h2 class="sulton_section_title">Status Pengingat Seluruh Tugas</h2>
+            <p class="sulton_section_sub">Evaluasi otomatis sisa waktu terhadap ambang peringatan yang dipilih.</p>
+          </div>
+        </div>
+        <div id="sulton_reminder_log_container"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="sulton_footer">
+    <div class="sulton_container">
+      <div class="sulton_footer_grid">
+        <div>
+          <a href="index.html" class="sulton_footer_brand">
+            <span class="sulton_brand_badge sulton_brand_badge_sm">
+              <img src="img/logo_youremind.png" alt="Logo YouRemind" class="sulton_brand_logo" onerror="if(!this.dataset.f){this.dataset.f='1';this.src='img/logo_youremind.webp';}else if(this.dataset.f==='1'){this.dataset.f='2';this.src='img/logo_youremind.jpg';}">
+            </span>
+            <span>YouRemind</span>
+          </a>
+          <p class="sulton_footer_text">
+            Aplikasi web untuk mencatat jadwal kuliah mingguan dan memantau tenggat tugas mahasiswa agar tidak terlewat.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="sulton_footer_title">Menu Utama</h3>
+          <ul class="sulton_footer_links">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="jadwal.html">Jadwal Kuliah</a></li>
+            <li><a href="tambah-tugas.html">Tambah Tugas</a></li>
+            <li><a href="daftar-tugas.html">Daftar Tugas</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="sulton_footer_title">Pengaturan &amp; Info</h3>
+          <ul class="sulton_footer_links">
+            <li><a href="pengingat.html">Pengaturan Pengingat</a></li>
+            <li><a href="tentang.html">Tentang Aplikasi</a></li>
+            <li><a href="kontak.html">Kontak Pengembang</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="sulton_footer_title">Pengembang</h3>
+          <p class="sulton_footer_text">
+            <strong>Sulton Nur Arif</strong> (2503010083)<br>
+            Teknik Informatika &bull; Kelas D<br>
+            Universitas Perjuangan Tasikmalaya
+          </p>
+        </div>
+      </div>
+
+      <div class="sulton_footer_bottom">
+        <span>&copy; 2026 Sulton Nur Arif &bull; YouRemind</span>
+        <span>UTS Pemrograman Web</span>
+      </div>
+    </div>
+  </footer>
+
+  <nav id="sulton_bottom_nav" aria-label="Navigasi Cepat Mobile">
+    <a href="index.html" class="sulton_bnav_item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Beranda</span></a>
+    <a href="jadwal.html" class="sulton_bnav_item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span>Jadwal</span></a>
+    <a href="tambah-tugas.html" class="sulton_bnav_item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg><span>Tambah</span></a>
+    <a href="daftar-tugas.html" class="sulton_bnav_item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><span>Tugas</span></a>
+    <a href="pengingat.html" class="sulton_bnav_item sulton_active"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span>Pengingat</span></a>
+  </nav>
+
+  <div id="sulton_toast" role="status" aria-live="polite"></div>
+  <script src="js/sulton_app.js"></script>
+</body>
+</html>

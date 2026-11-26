@@ -1,0 +1,1861 @@
+/* =========================================================
+   SISTEM DESAIN YOUREMIND + PENINGKATAN VISUAL & THEME SLIDE
+   Nama     : Sulton Nur Arif (2503010083) - Kelas D
+   Prodi    : Teknik Informatika - Universitas Perjuangan Tasikmalaya
+   Konvensi : Seluruh ID, Class, dan Variabel berawalan "sulton"
+   ========================================================= */
+
+:root {
+  --sulton-font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --sulton-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --sulton-bg: #f3f7fc;
+  --sulton-surface: #ffffff;
+  --sulton-surface-alt: #eaf1f9;
+  --sulton-header-bg: rgba(255, 255, 255, 0.92);
+  --sulton-hero-bg: #f7faff;
+  --sulton-border: #dce6f2;
+  --sulton-border-strong: #bfd0e4;
+  --sulton-ink: #0f172a;
+  --sulton-ink-body: #334155;
+  --sulton-ink-muted: #5e7088;
+
+  --sulton-sky: #0284c7;
+  --sulton-sky-hover: #0369a1;
+  --sulton-sky-soft: #e0f2fe;
+  --sulton-sky-tint: #ffffff;
+  --sulton-kicker-border: #bae6fd;
+
+  --sulton-success: #059669;
+  --sulton-success-soft: #d1fae5;
+  --sulton-warning: #d97706;
+  --sulton-warning-soft: #fef3c7;
+  --sulton-danger: #dc2626;
+  --sulton-danger-soft: #fee2e2;
+
+  --sulton-countdown-bg: linear-gradient(135deg, #082f49 0%, #0369a1 52%, #0284c7 100%);
+  --sulton-countdown-label: #bae6fd;
+  --sulton-countdown-inner: rgba(8, 20, 38, 0.42);
+  --sulton-countdown-border: rgba(255, 255, 255, 0.22);
+  --sulton-countdown-accent: #ffffff;
+
+  /* Pola titik akademik & pendaran cahaya biru lembut (Light Mode) */
+  --sulton-dot-color: rgba(2, 132, 199, 0.17);
+  --sulton-glow-primary: rgba(2, 132, 199, 0.14);
+  --sulton-glow-secondary: rgba(14, 165, 233, 0.09);
+
+  --sulton-footer-bg: #0b1324;
+  --sulton-footer-border: #1e293b;
+  --sulton-radius: 12px;
+  --sulton-radius-lg: 16px;
+  --sulton-shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+  --sulton-shadow-md: 0 18px 38px -6px rgba(15, 23, 42, 0.09), 0 6px 16px -3px rgba(2, 132, 199, 0.08);
+  --sulton-shadow-lift: 0 10px 24px -4px rgba(15, 23, 42, 0.08);
+}
+
+/* ==================== TEMA DARK MODE ==================== */
+[data-theme="dark"] {
+  --sulton-bg: #080d18;
+  --sulton-surface: #0f172a;
+  --sulton-surface-alt: #162238;
+  --sulton-header-bg: rgba(15, 23, 42, 0.92);
+  --sulton-hero-bg: #0b1221;
+  --sulton-border: #1e293b;
+  --sulton-border-strong: #334155;
+  --sulton-ink: #f8fafc;
+  --sulton-ink-body: #cbd5e1;
+  --sulton-ink-muted: #94a3b8;
+
+  --sulton-sky: #38bdf8;
+  --sulton-sky-hover: #7dd3fc;
+  --sulton-sky-soft: rgba(56, 189, 248, 0.15);
+  --sulton-sky-tint: rgba(56, 189, 248, 0.09);
+  --sulton-kicker-border: rgba(56, 189, 248, 0.3);
+
+  --sulton-success: #34d399;
+  --sulton-success-soft: rgba(16, 185, 129, 0.16);
+  --sulton-warning: #fbbf24;
+  --sulton-warning-soft: rgba(245, 158, 11, 0.16);
+  --sulton-danger: #f87171;
+  --sulton-danger-soft: rgba(239, 68, 68, 0.16);
+
+  --sulton-countdown-bg: linear-gradient(145deg, #070c16 0%, #0c1b33 100%);
+  --sulton-countdown-label: #7dd3fc;
+  --sulton-countdown-inner: rgba(2, 6, 23, 0.65);
+  --sulton-countdown-border: rgba(56, 189, 248, 0.24);
+  --sulton-countdown-accent: #38bdf8;
+
+  /* Pola titik akademik & pendaran cahaya biru lembut (Dark Mode) */
+  --sulton-dot-color: rgba(56, 189, 248, 0.14);
+  --sulton-glow-primary: rgba(56, 189, 248, 0.16);
+  --sulton-glow-secondary: rgba(2, 132, 199, 0.12);
+
+  --sulton-footer-bg: #050912;
+  --sulton-footer-border: #1e293b;
+  --sulton-shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.38);
+  --sulton-shadow-md: 0 20px 42px rgba(0, 0, 0, 0.52);
+  --sulton-shadow-lift: 0 12px 26px rgba(0, 0, 0, 0.44);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--sulton-font-sans);
+  background-color: var(--sulton-bg);
+  color: var(--sulton-ink-body);
+  line-height: 1.62;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background-color 0.32s ease, color 0.32s ease;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.sulton_container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ==================== ANIMASI & EFEK SLIDE TEMA ==================== */
+@keyframes sultonHeroEnter {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sultonPulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.84); }
+}
+
+@keyframes sultonFloatSlow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Efek Tirai Slide Kiri -> Kanan (Terang ke Gelap) */
+@keyframes sultonCurtainToDark {
+  0% {
+    transform: translateX(-102%);
+    opacity: 0.96;
+  }
+  46% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  56% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(102%);
+    opacity: 0.92;
+  }
+}
+
+/* Efek Tirai Slide Kanan -> Kiri (Gelap ke Terang) */
+@keyframes sultonCurtainToLight {
+  0% {
+    transform: translateX(102%);
+    opacity: 0.96;
+  }
+  46% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  56% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-102%);
+    opacity: 0.92;
+  }
+}
+
+/* Efek Geser Halus Konten Utama Saat Tema Berubah */
+@keyframes sultonContentGlideRight {
+  0% { transform: translateX(0); }
+  45% { transform: translateX(14px); opacity: 0.85; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes sultonContentGlideLeft {
+  0% { transform: translateX(0); }
+  45% { transform: translateX(-14px); opacity: 0.85; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+#sulton_theme_curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  transform: translateX(-105%);
+  will-change: transform;
+}
+
+#sulton_theme_curtain.sulton_slide_to_dark {
+  background: linear-gradient(90deg, #050912 0%, #0b1221 82%, #0284c7 100%);
+  border-right: 3px solid #38bdf8;
+  box-shadow: 12px 0 36px rgba(2, 132, 199, 0.35);
+  animation: sultonCurtainToDark 0.52s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+#sulton_theme_curtain.sulton_slide_to_light {
+  background: linear-gradient(270deg, #f3f7fc 0%, #e0f2fe 82%, #0ea5e9 100%);
+  border-left: 3px solid #0284c7;
+  box-shadow: -12px 0 36px rgba(2, 132, 199, 0.25);
+  animation: sultonCurtainToLight 0.52s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+main.sulton_glide_right {
+  animation: sultonContentGlideRight 0.48s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+main.sulton_glide_left {
+  animation: sultonContentGlideLeft 0.48s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sulton_enter_anim {
+  animation: sultonHeroEnter 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.sulton_float_svg {
+  animation: sultonFloatSlow 4.5s ease-in-out infinite;
+}
+
+/* ==================== HEADER & LOGO YOUREMIND ==================== */
+#sulton_header {
+  background-color: var(--sulton-header-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--sulton-border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: background-color 0.28s ease, border-color 0.28s ease;
+}
+
+.sulton_navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 70px;
+  gap: 12px;
+}
+
+.sulton_brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  flex-shrink: 0;
+}
+
+.sulton_brand_badge {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  background-color: #081224;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2), 0 0 0 1px rgba(56, 189, 248, 0.2);
+  flex-shrink: 0;
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.22s ease;
+}
+
+.sulton_brand_badge_sm {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+}
+
+.sulton_brand:hover .sulton_brand_badge,
+.sulton_footer_brand:hover .sulton_brand_badge {
+  transform: translateY(-1px) scale(1.04);
+  box-shadow: 0 6px 18px rgba(2, 132, 199, 0.32), 0 0 0 1px rgba(56, 189, 248, 0.42);
+}
+
+.sulton_brand_logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.09);
+  display: block;
+}
+
+.sulton_brand_wordmark {
+  font-size: 1.18rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--sulton-ink);
+}
+
+.sulton_menu {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.sulton_menu_link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 40px;
+  padding: 0 11px;
+  border-radius: 9px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--sulton-ink-muted);
+  transition: color 0.18s ease, background-color 0.18s ease;
+}
+
+.sulton_menu_link:hover {
+  color: var(--sulton-ink);
+  background-color: var(--sulton-surface-alt);
+}
+
+.sulton_menu_link.sulton_active {
+  color: var(--sulton-sky);
+  background-color: var(--sulton-sky-soft);
+}
+
+.sulton_nav_badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background-color: var(--sulton-warning);
+  color: #ffffff;
+  font-family: var(--sulton-font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.sulton_nav_controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Switch Light / Dark Mode dengan Animasi Slide Kiri-Kanan */
+.sulton_theme_switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 66px;
+  height: 36px;
+  padding: 0 8px;
+  background-color: var(--sulton-surface-alt);
+  border: 1px solid var(--sulton-border-strong);
+  border-radius: 999px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background-color 0.28s ease, border-color 0.28s ease, transform 0.15s ease;
+}
+
+.sulton_theme_switch:hover {
+  border-color: var(--sulton-sky);
+}
+
+.sulton_theme_switch:active {
+  transform: scale(0.95);
+}
+
+.sulton_switch_icon {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  transition: transform 0.34s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.25s ease, opacity 0.25s ease;
+}
+
+.sulton_switch_sun {
+  color: #ffffff;
+  transform: translateX(0) rotate(0deg);
+}
+
+.sulton_switch_moon {
+  color: var(--sulton-ink-muted);
+  opacity: 0.72;
+  transform: translateX(2px) rotate(-20deg);
+}
+
+.sulton_switch_thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);
+  z-index: 1;
+  transition: transform 0.36s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.28s ease;
+}
+
+[data-theme="dark"] .sulton_switch_thumb {
+  transform: translateX(30px);
+  background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+}
+
+[data-theme="dark"] .sulton_switch_sun {
+  color: var(--sulton-ink-muted);
+  opacity: 0.65;
+  transform: translateX(-2px) rotate(45deg);
+}
+
+[data-theme="dark"] .sulton_switch_moon {
+  color: #081224;
+  opacity: 1;
+  transform: translateX(0) rotate(0deg);
+}
+
+/* ==================== HERO & PAGE HEADER DENGAN BACKGROUND AKADEMIK HALUS ==================== */
+#sulton_hero,
+.sulton_page_header {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--sulton-hero-bg);
+  background-image:
+    radial-gradient(circle at 80% 34%, var(--sulton-glow-primary) 0%, transparent 48%),
+    radial-gradient(circle at 18% 82%, var(--sulton-glow-secondary) 0%, transparent 45%),
+    radial-gradient(var(--sulton-dot-color) 1.25px, transparent 1.25px);
+  background-size: 100% 100%, 100% 100%, 24px 24px;
+  border-bottom: 1px solid var(--sulton-border);
+}
+
+#sulton_hero::after,
+.sulton_page_header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 74%, var(--sulton-hero-bg) 100%);
+  pointer-events: none;
+}
+
+#sulton_hero {
+  padding: 52px 0;
+}
+
+.sulton_page_header {
+  padding: 36px 0 32px;
+}
+
+.sulton_page_header > .sulton_container {
+  position: relative;
+  z-index: 1;
+}
+
+.sulton_hero_grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.06fr 0.94fr;
+  gap: 44px;
+  align-items: center;
+}
+
+.sulton_hero_kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--sulton-sky-tint);
+  border: 1px solid var(--sulton-kicker-border);
+  color: var(--sulton-sky);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+  box-shadow: var(--sulton-shadow-sm);
+}
+
+.sulton_pulse_dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--sulton-sky);
+  display: inline-block;
+  animation: sultonPulseDot 2.4s infinite ease-in-out;
+}
+
+.sulton_hero_title {
+  font-size: 2.52rem;
+  line-height: 1.14;
+  letter-spacing: -0.032em;
+  color: var(--sulton-ink);
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.sulton_page_title {
+  font-size: 1.95rem;
+  line-height: 1.2;
+  letter-spacing: -0.028em;
+  color: var(--sulton-ink);
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.sulton_hero_desc,
+.sulton_page_desc {
+  font-size: 1rem;
+  color: var(--sulton-ink-body);
+  max-width: 560px;
+}
+
+.sulton_hero_desc {
+  margin-bottom: 26px;
+}
+
+.sulton_hero_actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+/* Kartu Ilustrasi Akademik Mini di Hero Kiri */
+.sulton_hero_visual_strip {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 16px;
+  background-color: var(--sulton-surface);
+  border: 1px solid var(--sulton-border-strong);
+  border-radius: 12px;
+  box-shadow: var(--sulton-shadow-sm);
+  max-width: 530px;
+}
+
+.sulton_hero_visual_caption {
+  font-size: 0.82rem;
+  color: var(--sulton-ink-muted);
+  line-height: 1.48;
+}
+
+.sulton_hero_visual_caption strong {
+  color: var(--sulton-ink);
+  display: block;
+  font-size: 0.87rem;
+  margin-bottom: 2px;
+}
+
+/* ==================== TOMBOL ==================== */
+.sulton_btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.16s ease, background-color 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.sulton_btn:hover { transform: translateY(-2px); }
+.sulton_btn:active { transform: translateY(1px); }
+
+.sulton_btn_primary {
+  background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.32);
+}
+
+.sulton_btn_secondary {
+  background-color: var(--sulton-surface);
+  color: var(--sulton-ink);
+  border-color: var(--sulton-border-strong);
+  box-shadow: var(--sulton-shadow-sm);
+}
+
+.sulton_btn_secondary:hover {
+  background-color: var(--sulton-surface-alt);
+  border-color: var(--sulton-sky);
+}
+
+.sulton_btn_success {
+  background-color: #059669;
+  color: #ffffff;
+}
+
+.sulton_btn_danger {
+  background-color: var(--sulton-danger-soft);
+  color: var(--sulton-danger);
+  border-color: transparent;
+}
+
+.sulton_btn_danger:hover {
+  background-color: var(--sulton-danger);
+  color: #ffffff;
+}
+
+.sulton_btn_sm { min-height: 38px; padding: 6px 14px; font-size: 0.82rem; }
+.sulton_btn_xs { min-height: 32px; padding: 4px 10px; font-size: 0.77rem; }
+
+/* ==================== PANEL PANTAUAN TENGGAT (.sulton_app_frame) ==================== */
+.sulton_app_frame {
+  background-color: var(--sulton-surface);
+  border: 1px solid var(--sulton-border-strong);
+  border-radius: var(--sulton-radius-lg);
+  box-shadow: var(--sulton-shadow-md);
+  overflow: hidden;
+}
+
+.sulton_app_frame_bar {
+  background-color: var(--sulton-surface-alt);
+  border-bottom: 1px solid var(--sulton-border);
+  padding: 13px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.sulton_app_frame_label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--sulton-ink);
+}
+
+.sulton_app_frame_body {
+  padding: 22px;
+}
+
+.sulton_countdown_box {
+  position: relative;
+  overflow: hidden;
+  background: var(--sulton-countdown-bg);
+  color: #f8fafc;
+  border: 1px solid var(--sulton-countdown-border);
+  border-radius: var(--sulton-radius);
+  padding: 18px;
+  margin-bottom: 16px;
+}
+
+.sulton_countdown_box::before {
+  content: "";
+  position: absolute;
+  right: -28px;
+  top: -28px;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 16px solid rgba(255, 255, 255, 0.07);
+  pointer-events: none;
+}
+
+.sulton_countdown_top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.sulton_countdown_label {
+  font-family: var(--sulton-font-mono);
+  font-size: 0.71rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--sulton-countdown-label);
+}
+
+.sulton_live_chip {
+  font-family: var(--sulton-font-mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+}
+
+.sulton_countdown_task {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 13px;
+}
+
+.sulton_countdown_time {
+  background-color: var(--sulton-countdown-inner);
+  border: 1px solid var(--sulton-countdown-border);
+  padding: 12px;
+  border-radius: 9px;
+  font-family: var(--sulton-font-mono);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--sulton-countdown-accent);
+  text-align: center;
+}
+
+.sulton_frame_subhead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--sulton-ink-muted);
+  margin-bottom: 10px;
+}
+
+.sulton_frame_mini_list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.sulton_frame_mini_row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 13px;
+  background-color: var(--sulton-bg);
+  border: 1px solid var(--sulton-border);
+  border-radius: 9px;
+  font-size: 0.84rem;
+}
+
+.sulton_frame_mini_title {
+  font-weight: 700;
+  color: var(--sulton-ink);
+  display: block;
+}
+
+.sulton_frame_mini_sub {
+  font-size: 0.77rem;
+  color: var(--sulton-ink-muted);
+}
+
+/* ==================== SECTION, GRID & EMPTY STATE ILUSTRASI ==================== */
+.sulton_section {
+  padding: 46px 0;
+  border-bottom: 1px solid var(--sulton-border);
+}
+
+.sulton_section_alt {
+  background-color: var(--sulton-surface);
+}
+
+.sulton_section_head_split {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.sulton_section_eyebrow {
+  display: inline-block;
+  font-family: var(--sulton-font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--sulton-sky);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.sulton_section_title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--sulton-ink);
+  margin-bottom: 4px;
+}
+
+.sulton_section_sub {
+  font-size: 0.93rem;
+  color: var(--sulton-ink-muted);
+}
+
+.sulton_today_grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 26px;
+}
+
+.sulton_today_item {
+  background-color: var(--sulton-surface);
+  border: 1px solid var(--sulton-border);
+  border-left: 4px solid var(--sulton-sky);
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: var(--sulton-shadow-sm);
+}
+
+.sulton_today_time {
+  font-family: var(--sulton-font-mono);
+  font-size: 0.79rem;
+  font-weight: 700;
+  color: var(--sulton-sky);
+  margin-bottom: 6px;
+}
+
+.sulton_today_matkul {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--sulton-ink);
+  margin-bottom: 4px;
+}
+
+.sulton_today_ruang {
+  font-size: 0.82rem;
+  color: var(--sulton-ink-muted);
+}
+
+/* Kotak Ilustrasi Empty State */
+.sulton_empty_illustrated {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--sulton-surface);
+  border: 1px dashed var(--sulton-border-strong);
+  border-radius: 14px;
+  padding: 34px 20px;
+  margin-bottom: 24px;
+}
+
+.sulton_empty_illustrated h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--sulton-ink);
+  margin: 12px 0 6px;
+}
+
+.sulton_empty_illustrated p {
+  font-size: 0.88rem;
+  color: var(--sulton-ink-muted);
+  max-width: 440px;
+  margin-bottom: 16px;
+}
+
+/* ==================== STATISTIK & PROGRESS BAR ==================== */
+.sulton_stats_grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.sulton_stat_card {
+  background-color: var(--sulton-surface);
+  border: 1px solid var(--sulton-border);
+  border-radius: var(--sulton-radius);
+  padding: 20px 22px;
+  box-shadow: var(--sulton-shadow-sm);
+}
+
+.sulton_stat_top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.sulton_stat_title {
+  font-size: 0.84rem;
+  color: var(--sulton-ink-muted);
+  font-weight: 600;
+}
+
+.sulton_stat_icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background-color: var(--sulton-surface-alt);
+  color: var(--sulton-ink-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sulton-font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.sulton_stat_icon_sky { background-color: var(--sulton-sky-soft); color: var(--sulton-sky); }
+.sulton_stat_icon_warn { background-color: var(--sulton-warning-soft); color: var(--sulton-warning); }
+.sulton_stat_icon_ok { background-color: var(--sulton-success-soft); color: var(--sulton-success); }
+
+.sulton_stat_value {
+  font-family: var(--sulton-font-mono);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--sulton-ink);
+  line-height: 1.15;
+}
+
+.sulton_stat_value_sky { color: var(--sulton-sky); }
+.sulton_stat_value_warning { color: var(--sulton-warning); }
+.sulton_stat_value_success { color: var(--sulton-success); }
+
+.sulton_stat_sub {
+  font-size: 0.8rem;
+  color: var(--sulton-ink-muted);
+  margin-top: 6px;
+}
+
+.sulton_progress_card {
+  margin-top: 20px;
+  background-color: var(--sulton-surface);
+  border: 1px solid var(--sulton-border);
+  border-radius: var(--sulton-radius);
+  padding: 18px 22px;
+  box-shadow: var(--sulton-shadow-sm);
+}
+
+.sulton_progress_head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.sulton_progress_title {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: var(--sulton-ink);
+}
+
+.sulton_progress_pct {
+  font-family: var(--sulton-font-mono);
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--sulton-sky);
+  background-color: var(--sulton-sky-soft);
+  padding: 4px 10px;
+  border-radius: 7px;
+}
+
+.sulton_progress_track {
+  width: 100%;
+  height: 11px;
+  background-color: var(--sulton-surface-alt);
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid var(--sulton-border);
+}
+
+.sulton_progress_fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #0284c7 0%, #0ea5e9 55%, #10b981 100%);
+  border-radius: 999px;
+  transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ==================== KARTU, LIST & LAYOUT 2 KOLOM ==================== */
+.sulton_grid_2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.sulton_grid_sidebar {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.sulton_card {
+  background-color: var(--sulton-surface);
+  border: 1px solid var(--sulton-border);
+  border-radius: var(--sulton-radius-lg);
+  box-shadow: var(--sulton-shadow-sm);
+  overflow: hidden;
+}
+
+.sulton_card_header {
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--sulton-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background-color: var(--sulton-surface-alt);
+}
+
+.sulton_card_title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--sulton-ink);
+}
+
+.sulton_card_body {
+  padding: 22px;
+}
+
+.sulton_list_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--sulton-border);
+}
+
+.sulton_list_item:last-child { border-bottom: none; padding-bottom: 0; }
+.sulton_list_item:first-child { padding-top: 0; }
+
+.sulton_list_title { font-weight: 700; color: var(--sulton-ink); font-size: 0.93rem; }
+.sulton_list_meta { font-size: 0.82rem; color: var(--sulton-ink-muted); margin-top: 2px; }
+
+/* ==================== FORMULIR & INPUT ==================== */
+.sulton_form_group {
+  margin-bottom: 16px;
+}
+
+.sulton_form_row_2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.sulton_label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--sulton-ink);
+  margin-bottom: 6px;
+}
+
+.sulton_input,
+.sulton_select,
+.sulton_textarea {
+  width: 100%;
+  min-height: 42px;
+  padding: 9px 13px;
+  border-radius: 10px;
+  border: 1px solid var(--sulton-border-strong);
+  background-color: var(--sulton-bg);
+  color: var(--sulton-ink);
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+}
+
+.sulton_textarea {
+  min-height: 92px;
+  resize: vertical;
+}
+
+.sulton_input:focus,
+.sulton_select:focus,
+.sulton_textarea:focus {
+  outline: none;
+  border-color: var(--sulton-sky);
+  background-color: var(--sulton-surface);
+  box-shadow: 0 0 0 3px var(--sulton-sky-soft);
+}
+
+.sulton_chip_row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 8px;
+}
+
+.sulton_chip_btn {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--sulton-border-strong);
+  background-color: var(--sulton-surface-alt);
+  color: var(--sulton-ink-body);
+  font-family: inherit;
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.sulton_chip_btn:hover {
+  border-color: var(--sulton-sky);
+  color: var(--sulton-sky);
+  background-color: var(--sulton-sky-soft);
+}
+
+/* ==================== SEGMENTED TOGGLE, TAB & FILTER ==================== */
+.sulton_segmented {
+  display: inline-flex;
+  background-color: var(--sulton-surface-alt);
+  border: 1px solid var(--sulton-border-strong);
+  border-radius: 10px;
+  padding: 4px;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.sulton_seg_btn {
+  min-height: 34px;
+  padding: 5px 13px;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--sulton-ink-muted);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.16s ease, color 0.16s ease;
+}
+
+.sulton_seg_btn.sulton_seg_active {
+  background-color: var(--sulton-surface);
+  color: var(--sulton-sky);
+  box-shadow: var(--sulton-shadow-sm);
+}
+
+.sulton_toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.sulton_filter_bar {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+/* ==================== KARTU TUGAS & JADWAL ==================== */
+.sulton_task_grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.sulton_task_card {
+  background-color: var(--sulton-surface);
+  border: 1px solid var(--sulton-border);
+  border-left: 4px solid var(--sulton-sky);
+  border-radius: 13px;
+  padding: 18px 20px;
+  box-shadow: var(--sulton-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.sulton_task_card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sulton-shadow-lift);
+}
+
+.sulton_task_card.sulton_prio_tinggi { border-left-color: var(--sulton-danger); }
+.sulton_task_card.sulton_prio_sedang { border-left-color: var(--sulton-warning); }
+.sulton_task_card.sulton_prio_rendah { border-left-color: var(--sulton-sky); }
+.sulton_task_card.sulton_task_done {
+  opacity: 0.74;
+  border-left-color: var(--sulton-success);
+}
+
+.sulton_task_done .sulton_task_title {
+  text-decoration: line-through;
+  color: var(--sulton-ink-muted);
+}
+
+.sulton_task_top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.sulton_task_course {
+  font-family: var(--sulton-font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--sulton-sky);
+  margin-bottom: 4px;
+}
+
+.sulton_task_title {
+  font-size: 1.03rem;
+  font-weight: 700;
+  color: var(--sulton-ink);
+  line-height: 1.35;
+}
+
+.sulton_task_note {
+  font-size: 0.84rem;
+  color: var(--sulton-ink-muted);
+  margin-top: 6px;
+}
+
+.sulton_task_meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--sulton-border);
+  font-size: 0.8rem;
+}
+
+.sulton_task_actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* ==================== TABEL RESPONSIF ==================== */
+.sulton_table_wrap {
+  width: 100%;
+  overflow-x: auto;
+  background-color: var(--sulton-surface);
+  border: 1px solid var(--sulton-border);
+  border-radius: 13px;
+  box-shadow: var(--sulton-shadow-sm);
+}
+
+.sulton_table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.sulton_table th,
+.sulton_table td {
+  padding: 13px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--sulton-border);
+}
+
+.sulton_table th {
+  background-color: var(--sulton-surface-alt);
+  color: var(--sulton-ink);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.sulton_table tr:last-child td {
+  border-bottom: none;
+}
+
+/* ==================== PROFIL PENGEMBANG, ILUSTRASI & DIAGRAM ==================== */
+.sulton_profile_banner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: var(--sulton-countdown-bg);
+  border: 1px solid var(--sulton-countdown-border);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 18px;
+  color: #ffffff;
+}
+
+.sulton_avatar_frame {
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+  background-color: #081224;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28), 0 0 0 1.5px rgba(125, 211, 252, 0.32);
+}
+
+.sulton_avatar_frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.09);
+  display: block;
+}
+
+.sulton_avatar_caption {
+  font-family: var(--sulton-font-mono);
+  font-size: 0.69rem;
+  color: #bae6fd;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.sulton_avatar_name {
+  font-size: 1.12rem;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+
+.sulton_avatar_sub {
+  font-size: 0.82rem;
+  color: #e0f2fe;
+}
+
+.sulton_illust_showcase_box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background-color: var(--sulton-bg);
+  border: 1px solid var(--sulton-border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 18px;
+}
+
+.sulton_arch_diagram {
+  display: grid;
+  grid-template-columns: 1fr 22px 1fr 22px 1fr;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--sulton-bg);
+  border: 1px solid var(--sulton-border);
+  border-radius: 11px;
+  padding: 14px 12px;
+}
+
+.sulton_arch_node {
+  background-color: var(--sulton-surface);
+  border: 1px solid var(--sulton-border-strong);
+  border-radius: 9px;
+  padding: 10px 6px;
+  text-align: center;
+}
+
+.sulton_arch_node_core {
+  border-color: var(--sulton-sky);
+  background-color: var(--sulton-sky-soft);
+}
+
+.sulton_arch_node_tag {
+  display: block;
+  font-family: var(--sulton-font-mono);
+  font-size: 0.63rem;
+  font-weight: 700;
+  color: var(--sulton-sky);
+}
+
+.sulton_arch_node_name {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--sulton-ink);
+  margin-top: 2px;
+}
+
+.sulton_arch_wire {
+  height: 2px;
+  background-color: var(--sulton-border-strong);
+}
+
+.sulton_step_grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.sulton_step_card {
+  background-color: var(--sulton-surface);
+  border: 1px solid var(--sulton-border);
+  border-radius: 13px;
+  padding: 20px;
+  box-shadow: var(--sulton-shadow-sm);
+}
+
+.sulton_step_num {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background-color: var(--sulton-sky-soft);
+  color: var(--sulton-sky);
+  font-family: var(--sulton-font-mono);
+  font-weight: 800;
+  font-size: 0.88rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+/* ==================== PERTANYAAN UMUM CARD (KONTAK.HTML) ==================== */
+.sulton_faq_card_item {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--sulton-border);
+}
+
+.sulton_faq_card_item:first-child {
+  padding-top: 0;
+}
+
+.sulton_faq_card_item:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.sulton_faq_card_q {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: var(--sulton-ink);
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.sulton_faq_card_a {
+  font-size: 0.87rem;
+  color: var(--sulton-ink-body);
+  line-height: 1.62;
+}
+
+.sulton_faq_card_a strong {
+  color: var(--sulton-ink);
+  font-weight: 700;
+}
+
+.sulton_inline_link {
+  color: var(--sulton-sky);
+  font-weight: 700;
+  transition: color 0.16s ease;
+}
+
+.sulton_inline_link:hover {
+  color: var(--sulton-sky-hover);
+  text-decoration: underline;
+}
+
+.sulton_faq_list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sulton_faq_item {
+  background-color: var(--sulton-surface);
+  border: 1px solid var(--sulton-border);
+  border-radius: 12px;
+  padding: 16px 18px;
+}
+
+.sulton_faq_item summary {
+  font-weight: 700;
+  color: var(--sulton-ink);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sulton_faq_item summary::-webkit-details-marker {
+  display: none;
+}
+
+.sulton_faq_item summary::after {
+  content: "+";
+  font-family: var(--sulton-font-mono);
+  font-size: 1.15rem;
+  color: var(--sulton-sky);
+}
+
+.sulton_faq_item[open] summary::after {
+  content: "−";
+}
+
+.sulton_faq_item p {
+  margin-top: 10px;
+  font-size: 0.89rem;
+  color: var(--sulton-ink-body);
+  padding-top: 10px;
+  border-top: 1px solid var(--sulton-border);
+}
+
+/* ==================== BADGE ==================== */
+.sulton_badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 7px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.sulton_badge_sky { background-color: var(--sulton-sky-soft); color: var(--sulton-sky); }
+.sulton_badge_warning { background-color: var(--sulton-warning-soft); color: var(--sulton-warning); }
+.sulton_badge_danger { background-color: var(--sulton-danger-soft); color: var(--sulton-danger); }
+.sulton_badge_success { background-color: var(--sulton-success-soft); color: var(--sulton-success); }
+
+/* ==================== MODAL EDIT ==================== */
+.sulton_modal_backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(8, 13, 24, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 2500;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.sulton_modal_backdrop.sulton_modal_open {
+  display: flex;
+}
+
+.sulton_modal_box {
+  width: 100%;
+  max-width: 520px;
+  background-color: var(--sulton-surface);
+  border: 1px solid var(--sulton-border-strong);
+  border-radius: var(--sulton-radius-lg);
+  box-shadow: var(--sulton-shadow-md);
+  overflow: hidden;
+  animation: sultonHeroEnter 0.25s ease;
+}
+
+/* ==================== TOAST, FOOTER & MOBILE BOTTOM NAV ==================== */
+#sulton_toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background-color: #0f172a;
+  color: #f8fafc;
+  padding: 13px 18px;
+  border-radius: 11px;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35);
+  font-size: 0.88rem;
+  font-weight: 600;
+  z-index: 3000;
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  border: 1px solid #334155;
+  border-left: 4px solid #38bdf8;
+}
+
+#sulton_toast.sulton_toast_show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#sulton_footer {
+  background-color: var(--sulton-footer-bg);
+  color: #cbd5e1;
+  padding: 44px 0 24px;
+  margin-top: auto;
+  border-top: 1px solid var(--sulton-footer-border);
+}
+
+.sulton_footer_grid {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr 1fr 1.1fr;
+  gap: 28px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--sulton-footer-border);
+}
+
+.sulton_footer_brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff;
+  font-size: 1.14rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.sulton_footer_title {
+  color: #ffffff;
+  font-size: 0.92rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.sulton_footer_text {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  line-height: 1.62;
+}
+
+.sulton_footer_links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.sulton_footer_links a:hover {
+  color: #38bdf8;
+}
+
+.sulton_footer_bottom {
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.81rem;
+  color: #64748b;
+}
+
+#sulton_bottom_nav {
+  display: none;
+}
+
+/* ==================== MOBILE HAMBURGER & DRAWER (TENTANG & KONTAK) ==================== */
+.sulton_hamburger_btn,
+.sulton_mobile_drawer {
+  display: none;
+}
+
+@keyframes sultonDrawerDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1024px) {
+  .sulton_menu { display: none; }
+
+  .sulton_hamburger_btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 36px;
+    border-radius: 10px;
+    background-color: var(--sulton-surface-alt);
+    border: 1px solid var(--sulton-border-strong);
+    color: var(--sulton-ink);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.14s ease;
+  }
+
+  .sulton_hamburger_btn:hover {
+    border-color: var(--sulton-sky);
+    color: var(--sulton-sky);
+  }
+
+  .sulton_hamburger_btn:active {
+    transform: scale(0.95);
+  }
+
+  .sulton_hamburger_btn .sulton_icon_close {
+    display: none;
+  }
+
+  .sulton_hamburger_btn[aria-expanded="true"] {
+    background-color: var(--sulton-sky-soft);
+    border-color: var(--sulton-sky);
+    color: var(--sulton-sky);
+  }
+
+  .sulton_hamburger_btn[aria-expanded="true"] .sulton_icon_hamburger {
+    display: none;
+  }
+
+  .sulton_hamburger_btn[aria-expanded="true"] .sulton_icon_close {
+    display: block;
+  }
+
+  .sulton_mobile_drawer.sulton_drawer_open {
+    display: block;
+    background-color: var(--sulton-surface);
+    border-top: 1px solid var(--sulton-border);
+    border-bottom: 1px solid var(--sulton-border-strong);
+    box-shadow: var(--sulton-shadow-md);
+    animation: sultonDrawerDrop 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .sulton_mobile_drawer_inner {
+    padding-top: 12px;
+    padding-bottom: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .sulton_mobile_drawer_link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 50px;
+    padding: 10px 14px;
+    border-radius: 11px;
+    background-color: var(--sulton-bg);
+    border: 1px solid var(--sulton-border);
+    color: var(--sulton-ink);
+    transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+  }
+
+  .sulton_mobile_drawer_link:hover {
+    border-color: var(--sulton-sky);
+  }
+
+  .sulton_mobile_drawer_link.sulton_active {
+    background-color: var(--sulton-sky-soft);
+    border-color: var(--sulton-kicker-border);
+    color: var(--sulton-sky);
+  }
+
+  .sulton_mobile_drawer_icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    background-color: var(--sulton-surface);
+    border: 1px solid var(--sulton-border);
+    color: var(--sulton-sky);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .sulton_mobile_drawer_link strong {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .sulton_mobile_drawer_link small {
+    display: block;
+    font-size: 0.76rem;
+    color: var(--sulton-ink-muted);
+    margin-top: 1px;
+  }
+
+  .sulton_hero_grid,
+  .sulton_grid_2,
+  .sulton_grid_sidebar { grid-template-columns: 1fr; }
+  .sulton_today_grid,
+  .sulton_step_grid { grid-template-columns: repeat(2, 1fr); }
+  .sulton_stats_grid,
+  .sulton_footer_grid { grid-template-columns: repeat(2, 1fr); }
+  .sulton_filter_bar { grid-template-columns: 1fr 1fr; }
+
+  body {
+    padding-bottom: 74px;
+  }
+
+  #sulton_bottom_nav {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 66px;
+    background-color: var(--sulton-header-bg);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-top: 1px solid var(--sulton-border);
+    z-index: 1200;
+  }
+
+  .sulton_bnav_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    font-size: 0.69rem;
+    font-weight: 700;
+    color: var(--sulton-ink-muted);
+  }
+
+  .sulton_bnav_item.sulton_active {
+    color: var(--sulton-sky);
+  }
+
+  #sulton_toast {
+    bottom: 82px;
+    right: 16px;
+    left: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .sulton_hero_title { font-size: 1.9rem; }
+  .sulton_page_title { font-size: 1.58rem; }
+  .sulton_today_grid,
+  .sulton_stats_grid,
+  .sulton_task_grid,
+  .sulton_step_grid,
+  .sulton_footer_grid,
+  .sulton_filter_bar,
+  .sulton_form_row_2 { grid-template-columns: 1fr; }
+  .sulton_arch_diagram { grid-template-columns: 1fr; }
+  .sulton_arch_wire { width: 2px; height: 16px; margin: 0 auto; }
+  .sulton_profile_banner { flex-direction: column; text-align: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
